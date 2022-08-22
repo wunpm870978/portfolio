@@ -1,0 +1,21 @@
+.iconGrid {
+    display: grid;
+    justify-self: center;
+    position: fixed;
+    left: 10px;
+    top: 50%;
+    font-size: 50px;
+    grid-template-columns: 50px;
+    row-gap: 50px;
+    place-items: center;
+    transform: translateY(-50%);
+
+    .iconL {
+        font-size: 50px;
+        color: white;
+    }
+
+    .iconL:hover {
+        color: blue;
+    }
+}
