@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './navTop.module.scss';
-import { Dropdown, Menu, Space } from 'antd';
+import { Menu } from 'antd';
 import {
     GlobalOutlined
 } from '@ant-design/icons';
@@ -11,9 +11,9 @@ const NavTop = () => {
     const { t, i18n } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState('en');
 
-    const handleChangeLng = (event) => {
-        setAnchorEl(event.key);
-        i18n.changeLanguage(event.key);
+    const handleChangeLng = (val) => {
+        setAnchorEl(val);
+        i18n.changeLanguage(val);
     };
 
     return (
@@ -29,28 +29,18 @@ const NavTop = () => {
                     <div className={s.description}>
                         {t('navTop.myproject')}
                     </div>
-                    <Dropdown
-                        overlay={
-                            <Menu
-                                defaultSelectedKeys={['en']}
-                                selectedKeys={[anchorEl]}
-                                onClick={handleChangeLng}
-                                items={[
-                                    {
-                                        key: 'en',
-                                        label: 'English',
-                                    },
-                                    {
-                                        key: 'zh',
-                                        label: '中文 (繁體)',
-                                    },
-                                ]}
-                            />
-                        }
-                        placement="bottom"
-                    >
-                            <GlobalOutlined className={s.icon} />
-                    </Dropdown>
+                    <div className={s.navigation}>
+                        <GlobalOutlined className={s.icon} />
+                        <div className={s.menuContainer}>
+                            <div className={s.menuItem} onClick={() => { handleChangeLng('en'); }}>
+                                English
+                            </div>
+                            <div className={s.menuItem} onClick={() => { handleChangeLng('zh'); }}>
+                                中文 (繁體)
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

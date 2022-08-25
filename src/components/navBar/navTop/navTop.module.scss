@@ -18,62 +18,113 @@
         width: 70%;
         background-color: #34495e;
         border-radius: 8px;
+
+        .logo {
+            display: block;
+            padding: 10px;
+            font-family: 'Mouse Memoirs', sans-serif;
+            color: white;
+            font-size: 45px;
+            cursor: pointer;
+        }
+
+        .textContainer {
+            margin-left: auto;
+            margin-right: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            width: auto;
+            column-gap: 50px;
+            padding: 0px 10px;
+
+            .description {
+                font-family: 'Mouse Memoirs', sans-serif;
+                font-size: 30px;
+                color: white;
+                width: auto;
+                cursor: pointer;
+            }
+
+            .description:nth-child(2) {
+                position: relative;
+            }
+
+            .description::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                left: 0;
+                bottom: 0;
+                height: 0.05rem;
+                background: gray;
+                transform: scale(0, 1);
+                transform-origin: 100% 0%;
+                transition: transform 0.5s ease;
+            }
+
+            .description:hover::after {
+                transform: scale(1, 1);
+                transform-origin: 0% 0%;
+            }
+        }
+
+
+        .navigation {
+            display: block;
+
+            .icon {
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+                top: 50%;
+                position: relative;
+                transform: translateY(-50%);
+            }
+
+            .menuContainer {
+                overflow: hidden;
+                position: absolute;
+                background-color: #f1f1f1;
+                max-height: max-content;
+                margin-top: 10px;
+                border-radius: 4px;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                transform: translateX(calc(-50% + 10px));
+                clip: rect(auto, auto, 0, auto);
+                transition: clip 0.4s ease-out;
+
+                .menuItem {
+                    color: black;
+                    padding: 12px;
+                    text-decoration: none;
+                    display: block;
+                    -webkit-touch-callout: none;
+                    /* iOS Safari */
+                    -webkit-user-select: none;
+                    /* Safari */
+                    -khtml-user-select: none;
+                    /* Konqueror HTML */
+                    -moz-user-select: none;
+                    /* Old versions of Firefox */
+                    -ms-user-select: none;
+                    /* Internet Explorer/Edge */
+                    user-select: none;
+                    /* Non-prefixed version, currently
+                                              supported by Chrome, Edge, Opera and Firefox */
+                }
+
+                .menuItem:hover {
+                    background-color: #ddd;
+                    border-radius: 4px;
+                }
+            }
+        }
+
+        .navigation:hover .menuContainer {
+            clip: rect(auto, auto, 200px, auto);
+            transition: clip 0.4s ease-in;
+        }
     }
 
-    .logo {
-        display: block;
-        padding: 10px;
-        font-family: 'Mouse Memoirs', sans-serif;
-        color: white;
-        font-size: 45px;
-        cursor: pointer;
-    }
-
-    .textContainer {
-        margin-left: auto;
-        margin-right: 0px;
-        display: grid;
-        grid-template-columns: repeat(3, auto);
-        width: auto;
-        column-gap: 30px;
-        padding: 0px 10px;
-    }
-
-    .description {
-        font-family: 'Mouse Memoirs', sans-serif;
-        font-size: 30px;
-        color: white;
-        width: auto;
-        cursor: pointer;
-    }
-
-    .description:nth-child(2) {
-        position: relative;
-    }
-
-    .description::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        left: 0;
-        bottom: 0;
-        height: 0.05rem;
-        background: gray;
-        transform: scale(0, 1);
-        transform-origin: 100% 0%;
-        transition: transform 0.5s ease;
-    }
-
-    .description:hover::after {
-        transform: scale(1, 1);
-        transform-origin: 0% 0%;
-    }
-
-    .icon {
-        // margin: auto;
-        align-self: center;
-        color: white;
-        font-size: 20px;
-        cursor: pointer;
-    }
 }
