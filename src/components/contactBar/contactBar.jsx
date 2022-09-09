@@ -13,7 +13,9 @@ export default function ContactBar() {
             <div className={s.iconGrid}>
                 <LinkedinFilled className={s.iconL} />
                 <GithubFilled className={s.iconL} />
-                <MailOutlined className={s.iconL} />
+                <a href="mailto:petermakwork@gmail.com">
+                    <MailOutlined className={s.iconL} />
+                </a>
                 <MailFilled className={s.iconL} />
             </div>
         </React.Fragment>
