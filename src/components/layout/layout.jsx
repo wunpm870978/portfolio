@@ -10,15 +10,18 @@ import "swiper/scss/navigation";
 import { workExp, education } from '../../assets/portfolio';
 import {
     EffectFlip,
-    EffectCube,
     Pagination,
     Navigation,
     Parallax,
+    Autoplay,
 } from "swiper";
 import {
     RocketOutlined,
+    ScheduleOutlined,
+    AuditOutlined,
+    HomeOutlined,
 } from '@ant-design/icons';
-
+import Astronaut from '../../assets/keyersProps/umbrella.png';
 
 const Layout = () => {
     const size = 80;
@@ -32,12 +35,12 @@ const Layout = () => {
 
     const [selectedCategory, setSelectedCategory] = useState(0);
 
-    const listenToScroll = (e) => {
+    const listenToScroll = () => {
         const winScroll =
             document.body.scrollTop || document.documentElement.scrollTop;
         const scrollHeight = document.documentElement.scrollHeight;
         const clientHeight = document.documentElement.clientHeight;
-        // console.log('sssss',e);
+        // console.log('sssss', e);
         // const scrollHeight = e.target.scrollHeight;
         // const clientHeight = e.target.clientHeight;
         setArcOffset2(Math.abs(
@@ -65,6 +68,26 @@ const Layout = () => {
         )
     })
 
+    const eduList = education.map((item, idx) => {
+        return (
+            <SwiperSlide key={`edu_${idx}`} className={s.swiperSlide}>
+                <div>
+                    <ScheduleOutlined />
+                    <p>{item.period}</p>
+                </div>
+                <div>
+                    <AuditOutlined />
+                    <p>{item.course}</p>
+                </div>
+                <div>
+                    <HomeOutlined />
+                    <p>{item.college}</p>
+                </div>
+                {/* <p>{item.status}</p> */}
+            </SwiperSlide>
+        )
+    })
+
     React.useEffect(() => {
         document.addEventListener('scroll', listenToScroll);
         return () => {
@@ -78,6 +101,7 @@ const Layout = () => {
                 return (
                     <div className={s.workexp}>
                         <Swiper
+                            key='swiper_0'
                             style={{
                                 backgroundColor: '#00ff00cc',
                                 "--swiper-navigation-color": "#fff",
@@ -90,7 +114,7 @@ const Layout = () => {
                                 dynamicBullets: true,
                             }}
                             navigation={true}
-                            modules={[Parallax, Pagination, Navigation]}
+                            modules={[EffectFlip, Autoplay, Parallax, Pagination, Navigation]}
                         >
                             {workRenderList}
                         </Swiper>
@@ -100,30 +124,21 @@ const Layout = () => {
                 return (
                     <div className={s.edu}>
                         <Swiper
+                            key='swiper_1'
                             style={{
-                                width: '300px',
-                                height: '300px',
-                                padding: '50px',
+                                width: '250px',
+                                height: 'auto',
                             }}
+                            // autoplay={{
+                            //     delay: 5000,
+                            //     disableOnInteraction: false,
+                            // }}
                             effect={"flip"}
                             grabCursor={true}
-                            pagination={true}
-                            navigation={true}
-                            modules={[EffectFlip, Pagination, Navigation]}
-                            className="mySwiper"
+                            centeredSlides={true}
+                            modules={[EffectFlip, Autoplay]}
                         >
-                            <SwiperSlide className={s.swiperSlide}>
-                                <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-                            </SwiperSlide>
-                            <SwiperSlide className={s.swiperSlide}>
-                                <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-                            </SwiperSlide>
-                            <SwiperSlide className={s.swiperSlide}>
-                                <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-                            </SwiperSlide>
-                            <SwiperSlide className={s.swiperSlide}>
-                                <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-                            </SwiperSlide>
+                            {eduList}
                         </Swiper>
                     </div>
                 );
@@ -139,6 +154,12 @@ const Layout = () => {
                 <div className={s.intro}>
                     {'Hi, I am Peter. I am experience in  web and app development for frontend and backend.'}
                 </div>
+            </div>
+            <div className={s.dvider1}>
+                <img
+                    src={Astronaut}
+                    alt=''
+                />
             </div>
             <div className={s.cateContainer}>
                 <div className={s.cateGrid}>
@@ -165,7 +186,11 @@ const Layout = () => {
             </div>
             <div
                 className={s.pageUpBtn}
-                style={{ display: 1 - (arcOffset2 / arcOffset1) > 0.1 ? 'block' : 'none' }}
+                style={{ display: 1 - (arcOffset2 / arcOffset1) > 0.2 ? 'block' : 'none' }}
+                onClick={() => window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                })}
             >
                 <svg width={`${size}px`} height={`${size}px`} style={{ transform: 'rotate(-90deg)' }}>
                     <circle

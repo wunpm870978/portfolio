@@ -26,7 +26,6 @@ export const workExp = [
             'Researching automation system',
             'Searching third party API to link and manage Chat App',
             'Developing chatbot',
-
         ]
     },
 ]
@@ -43,7 +42,7 @@ export const education = [
     },
     {
         period: '2019 - 2021',
-
+        status: 'graduate',
         college: 'The Hong Kong Polytechnic University',
         course: 'BEng (Hons) Degree Programme in Electronic and Information Engineering',
 
