@@ -1,6 +1,7 @@
 {
   "name": "my-webpack-project",
   "version": "1.0.0",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
