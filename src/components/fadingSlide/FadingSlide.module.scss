@@ -1,0 +1,18 @@
+ .swiperSlide {
+     position: relative;
+     top: 150px;
+     width: 250px;
+     height: 200px;
+     margin: auto;
+     color: white;
+     text-align: center;
+     font-size: 18px;
+
+     div {
+         display: grid;
+         grid-template-columns: 2fr 8fr;
+         column-gap: 5px;
+         row-gap: 10px;
+
+     }
+ }

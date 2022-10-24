@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './navTop.module.scss';
-import { Menu } from 'antd';
 import {
     GlobalOutlined
 } from '@ant-design/icons';
@@ -9,10 +8,8 @@ import { useTranslation } from 'react-i18next';
 
 const NavTop = () => {
     const { t, i18n } = useTranslation();
-    const [anchorEl, setAnchorEl] = React.useState('en');
 
     const handleChangeLng = (val) => {
-        setAnchorEl(val);
         i18n.changeLanguage(val);
     };
 

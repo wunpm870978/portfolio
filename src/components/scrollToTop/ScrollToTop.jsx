@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import s from './ScrollToTop.module.scss';
 import { RocketOutlined } from '@ant-design/icons';
 

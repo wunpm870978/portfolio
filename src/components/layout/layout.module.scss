@@ -129,6 +129,7 @@
             justify-content: center;
 
             .swiperSlide {
+                position: relative;
                 top: 150px;
                 width: 250px;
                 height: 200px;
@@ -146,7 +147,6 @@
                 }
             }
         }
-
     }
 
     .test {
@@ -233,25 +233,6 @@
             transform: rotate(2deg);
             left: 100%;
         }
-    }
-
-    @keyframes bgImgFade {
-        from {
-            background-image: url('../../../public/assets/images/mountain0.jpg');
-        }
-
-        33% {
-            background-image: url('../../../public/assets/images/mountain1.jpg');
-        }
-
-        66% {
-            background-image: url('../../../public/assets/images/mountain2.jpg');
-        }
-
-        to {
-            background-image: url('../../../public/assets/images/mountain0.jpg');
-        }
-
     }
 
 }

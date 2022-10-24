@@ -1,30 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavTop from '../navBar/navTop/navTop';
 import ContactBar from '../contactBar/contactBar';
 import s from './layout.module.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/scss";
-import "swiper/scss/effect-flip";
 import "swiper/scss/pagination";
 import "swiper/scss/navigation";
-import "swiper/css/effect-fade";
-import { workExp, education } from '../../assets/portfolio';
+import { workExp } from '../../assets/portfolio';
 import {
-    EffectFade,
-    EffectFlip,
     Pagination,
     Navigation,
     Parallax,
     Autoplay,
 } from "swiper";
-import {
-    ScheduleOutlined,
-    AuditOutlined,
-    HomeOutlined,
-} from '@ant-design/icons';
 import bgv from '../../assets/keyersProps/bgv1.webm';
 import Astronaut from '../../assets/keyersProps/umbrella.png';
 import ScrollToTop from '../scrollToTop/ScrollToTop';
+import AnimationWrapper from '../animationWrapper/AnimationWrapper';
+import FadingSlide from '../fadingSlide/FadingSlide';
+import './layout.css';
 
 const Layout = () => {
     const size = 80;
@@ -48,13 +42,12 @@ const Layout = () => {
         ));
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         document.addEventListener('scroll', listenToScroll);
         return () => {
             document.removeEventListener('scroll', listenToScroll);
         };
     })
-
 
     return (
         <div id='main-scrolling' className={s.root}>
@@ -92,45 +85,33 @@ const Layout = () => {
                     </span>
                 </div>
                 {{
-                    0: <div className={s.workexp}>
-                        <Swiper
-                            key='swiper_0'
-                            style={{
-                                backgroundColor: '#00ff00cc',
-                                "--swiper-navigation-color": "#fff",
-                                "--swiper-pagination-color": "#fff",
-                            }}
-                            speed={800}
-                            parallax={true}
-                            pagination={{
-                                clickable: true,
-                                dynamicBullets: true,
-                            }}
-                            navigation={true}
-                            modules={[EffectFlip, Autoplay, Parallax, Pagination, Navigation]}
-                        >
-                            {workRenderList}
-                        </Swiper>
-                    </div>,
-                    1: <div className={s.edu}>
-                        <Swiper
-                            key='swiper_1'
-                            style={{
-                                width: '250px',
-                                height: 'auto',
-                            }}
-                            // autoplay={{
-                            //     delay: 5000,
-                            //     disableOnInteraction: false,
-                            // }}
-                            effect={"flip"}
-                            grabCursor={true}
-                            centeredSlides={true}
-                            modules={[EffectFlip, Autoplay]}
-                        >
-                            {eduList}
-                        </Swiper>
-                    </div>,
+                    0: <AnimationWrapper key='info_0' effect='fadeIn'>
+                        <div className={s.workexp}>
+                            <Swiper
+                                key='swiper_0'
+                                style={{
+                                    backgroundColor: '#00ff00cc',
+                                    "--swiper-navigation-color": "#fff",
+                                    "--swiper-pagination-color": "#fff",
+                                }}
+                                speed={800}
+                                parallax={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true,
+                                }}
+                                navigation={true}
+                                modules={[Autoplay, Parallax, Pagination, Navigation]}
+                            >
+                                {workRenderList}
+                            </Swiper>
+                        </div>
+                    </AnimationWrapper>,
+                    1: <AnimationWrapper key='info_1' effect='fadeIn'>
+                        <div className={s.edu}>
+                            <FadingSlide />
+                        </div>
+                    </AnimationWrapper>,
                 }[selectedCategory]
                 }
             </div>
@@ -166,26 +147,6 @@ const workRenderList = workExp.map((item, idx) => {
                     })}
                 </ul>
             </div>
-        </SwiperSlide>
-    )
-})
-
-const eduList = education.map((item, idx) => {
-    return (
-        <SwiperSlide key={`edu_${idx}`} className={s.swiperSlide}>
-            <div>
-                <ScheduleOutlined />
-                <p>{item.period}</p>
-            </div>
-            <div>
-                <AuditOutlined />
-                <p>{item.course}</p>
-            </div>
-            <div>
-                <HomeOutlined />
-                <p>{item.college}</p>
-            </div>
-            {/* <p>{item.status}</p> */}
         </SwiperSlide>
     )
 })
